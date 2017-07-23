@@ -79,6 +79,8 @@ public class ConversationStudyFragment extends Fragment implements View.OnClickL
     }
 
     public void changeListView(boolean isKeyin) {
+        fontSize = Integer.parseInt( DicUtils.getPreferencesValue( getActivity(), CommConstants.preferences_font ) );
+
         if ( isKeyin ) {
             if (task != null) {
                 return;
