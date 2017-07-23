@@ -1,9 +1,11 @@
 package com.sleepingbear.penconversation;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -458,6 +460,25 @@ public class DicUtils {
         } else {
             rtn = " " + word + " ";
         }
+
+        return rtn;
+    }
+
+    public static String getPreferencesValue(Context context, String preference) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+
+        String rtn = sharedPref.getString( preference, "" );
+        if ( "".equals( rtn ) ) {
+            if ( preference.equals(CommConstants.preferences_font) ) {
+                rtn = "17";
+            } else if ( preference.equals(CommConstants.preferences_wordView) ) {
+                rtn = "0";
+            } else {
+                rtn = "";
+            }
+        }
+
+        DicUtils.dicLog(rtn);
 
         return rtn;
     }

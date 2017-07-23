@@ -38,6 +38,8 @@ public class ConversationStudyFragment extends Fragment implements View.OnClickL
 
     ConversationStudySearchTask task;
 
+    private int fontSize = 0;
+
     public ConversationStudyFragment() {
     }
 
@@ -46,12 +48,16 @@ public class ConversationStudyFragment extends Fragment implements View.OnClickL
                              Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_conversation_study, container, false);
 
+        fontSize = Integer.parseInt( DicUtils.getPreferencesValue( getActivity(), CommConstants.preferences_font ) );
+
         dbHelper = new DbHelper(getContext());
         db = dbHelper.getWritableDatabase();
 
         my_tv_han = (TextView) mainView.findViewById(R.id.my_tv_han);
         my_tv_foreign = (TextView) mainView.findViewById(R.id.my_tv_foreign);
 
+        my_tv_han.setTextSize(fontSize);
+        my_tv_foreign.setTextSize(fontSize);
 
         ((ImageView) mainView.findViewById(R.id.my_iv_left)).setOnClickListener(this);
         ((ImageView) mainView.findViewById(R.id.my_iv_right)).setOnClickListener(this);
@@ -254,13 +260,13 @@ public class ConversationStudyFragment extends Fragment implements View.OnClickL
                 btn.setTextColor(Color.rgb(255, 255, 255));
                 btn.setText( DicUtils.getBtnString( foreignArr[i] ) );
                 btn.setAllCaps(false);
-                btn.setTextSize(12);
+                btn.setTextSize(18);
 
                 btn.setLayoutParams((new FlowLayout.LayoutParams(3, 3)));
 
                 btn.setId(i);
                 btn.setTag( DicUtils.getBtnString( foreignArr[i] ) );
-                btn.setGravity(Gravity.LEFT);
+                btn.setGravity(Gravity.TOP);
                 btn.setOnClickListener(this);
                 wordArea.addView(btn);
             }
