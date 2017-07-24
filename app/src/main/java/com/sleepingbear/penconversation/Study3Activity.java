@@ -93,6 +93,12 @@ public class Study3Activity extends AppCompatActivity implements View.OnClickLis
         tv_total = (TextView) findViewById(R.id.my_a_study3_tv_total);
         tv_total.setText("0");
 
+        //UI 수정
+        int fontSize = Integer.parseInt( DicUtils.getPreferencesValue( this, CommConstants.preferences_font ) );
+        tv_question.setTextSize(fontSize);
+        tv_spelling.setTextSize(fontSize);
+        tv_answer.setTextSize(fontSize);
+
         if ( "".equals(mMemorization) ) {
             ((RadioButton) findViewById(R.id.my_a_study3_rb_all)).setChecked(true);
         } else if ( "Y".equals(mMemorization) ) {
